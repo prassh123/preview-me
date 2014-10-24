@@ -1,0 +1,25 @@
+{
+  "name": "preview-me",
+  "version": "0.0.1",
+  "homepage": "https://github.com/prassh123/preview-me",
+  "authors": [
+    "Prashanth Raghavan <prashanth.raghavan@hightail.com>"
+  ],
+  "description": "test or sample ui for the preview service",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fontawesome": "~4.2.0"
+  }
+}
