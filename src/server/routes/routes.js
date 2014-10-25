@@ -10,9 +10,6 @@ module.exports = function(app, p) {
 	router.route('/api/preview')
 		    .post(previewController.generatePreview);
 	app.use('/', router);
-
-	// GET /static/style.css etc.
-	app.use('/static', express.static(__dirname + '../client/css'));
 };
 
 
