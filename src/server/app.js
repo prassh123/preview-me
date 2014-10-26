@@ -28,6 +28,7 @@ app.set('view engine', '.hbs');
 
 /* Static middleware to expose bower components */
 app.use('/bower', express.static(__dirname + '/../../bower_components'));
+app.use('/client', express.static(__dirname + '/../../src/client'));
 /* End Bower */
 
 /* Add application routes */

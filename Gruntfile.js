@@ -13,6 +13,14 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		compass: {
+			dev: {
+				options: {
+					sassDir: 'src/client/scss',
+					cssDir: 'src/client/css'
+				}
+			}
+		},
 		watch: {
 			files: ['<%= jshint.files %>'],
 			tasks: ['jshint', 'express:dev'],
@@ -45,6 +53,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-compass');
 
   // Default task(s).
   grunt.registerTask('default', ['jshint']);
