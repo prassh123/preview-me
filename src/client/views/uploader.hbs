@@ -1,9 +1,19 @@
 <script src="/bower/dropzone/downloads/dropzone.js"></script>
+<script src="/client/js/uploader.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/client/css/uploader.css">
 
 <div id="dropzone">
-    <form action="/file-upload"
+    <form action="/api/file-upload"
           class="dropzone"
           id="my-awesome-dropzone">
     </form>
+</div>
+
+<div id="dropzone-previews" class="dropzone-previews"></div>
+
+<div id="generated-previews" class="generated-previews">Generated Previews
+<div id="gen-preview-placeholders"></div>
+
+
 </div>

@@ -9,6 +9,10 @@ module.exports = function(app, p) {
 
 	router.route('/api/preview')
 		    .post(previewController.generatePreview);
+
+	router.route('/api/file-upload')
+		    .post(previewController.uploadFile);
+
 	app.use('/', router);
 };
 
