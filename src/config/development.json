@@ -16,8 +16,8 @@
 	},
 	"storage": {
 		"type": "s3",
-		"accessKeyId": "AKIAJ6G4QGEWAITISLYQ",
-		"secretAccessKey": "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",
+		"accessKeyId": "",
+		"secretAccessKey": "",
 		"region": ""
 	},
 	"database": {
