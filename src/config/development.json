@@ -14,6 +14,12 @@
 	"app": {
 		"uploadDir": ""
 	},
+	"storage": {
+		"type": "s3",
+		"accessKeyId": "AKIAJ6G4QGEWAITISLYQ",
+		"secretAccessKey": "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",
+		"region": ""
+	},
 	"database": {
 		"host": "localhost",
 		"port": "27017",

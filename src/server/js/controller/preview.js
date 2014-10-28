@@ -2,8 +2,8 @@ var formidable = require('formidable'),
 		_          = require('lodash'),
 	  fs         = require('fs'),
 		path       = require('path'),
-	  imageUtils = require(path.join(__dirname, '/../utils/imageutils'));
-
+	  imageUtils = require(path.join(__dirname, '/../utils/imageutils')),
+	  s3Util     = require(path.join(__dirname, '/../utils/s3util'));
 
 
 exports.generatePreview = function(req, res) {
@@ -13,6 +13,8 @@ exports.generatePreview = function(req, res) {
 	if (_.isEmpty(fileId)) {
 		res.json({"status": 500, "message": "error"});
 	}
+
+	s3Util.gets3Object(fileId);
 	res.json({"status": 200, "message": "ok"});
 };
 

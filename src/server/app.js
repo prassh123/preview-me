@@ -9,7 +9,7 @@ var express = require('express'),
 app = express();
 
 //READ CONFIG. Picks up either development.json or production.json according to whatever is passed from Gruntfile.js
-var config  = require(__dirname + "/../config/" + process.env.NODE_ENV + ".json");
+config  = require(__dirname + "/../config/" + process.env.NODE_ENV + ".json");
 
 /* BodyParser middleware for decoding the contents sent using POST */
 app.use(bodyParser.urlencoded({
