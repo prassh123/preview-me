@@ -1,5 +1,7 @@
 <script src="/bower/dropzone/downloads/dropzone.js"></script>
 <script src="/client/js/uploader.js"></script>
+<script src="/bower/socket.io-client/socket.io.js"></script>
+<script src="/bower/jquery/dist/jquery.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/client/css/uploader.css">
 
@@ -15,5 +17,14 @@
 <div id="generated-previews" class="generated-previews">Generated Previews
 <div id="gen-preview-placeholders"></div>
 
+
+<script>
+    var socket = io('http://localhost:3000');
+    socket.on('preview-ready', function (data) {
+        console.log(data);
+        $('#gen-preview-placeholders').text(JSON.stringify(data));
+        //socket.emit('my other event', { my: 'data' });
+    });
+</script>
 
 </div>

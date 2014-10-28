@@ -4,6 +4,8 @@ var formidable = require('formidable'),
 		path       = require('path'),
 	  imageUtils = require(path.join(__dirname, '/../utils/imageutils'));
 
+
+
 exports.generatePreview = function(req, res) {
   console.log('Method: generate preview');
 	var fileId = req.params.fileId || req.body.fileId;

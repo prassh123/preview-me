@@ -21,6 +21,8 @@
   ],
   "dependencies": {
     "fontawesome": "~4.2.0",
-    "dropzone": "~3.10.2"
+    "dropzone": "~3.10.2",
+    "socket.io-client": "~1.1.0",
+    "jquery": "~2.1.1"
   }
 }

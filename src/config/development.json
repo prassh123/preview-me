@@ -1,0 +1,24 @@
+{
+	"server": {
+		"https": false,
+		"host": "localhost",
+		"port": "3000"
+	},
+	"ssl": {
+		"key": "",
+		"cert": "",
+		"ca": "certs/ca.crt",
+		"requestCert": true,
+		"rejectUnauthorized": false
+	},
+	"app": {
+		"uploadDir": ""
+	},
+	"database": {
+		"host": "localhost",
+		"port": "27017",
+		"username": "guest",
+		"password": "guest",
+		"name": "preview-me"
+	}
+}
