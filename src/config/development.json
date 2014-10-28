@@ -18,7 +18,7 @@
 		"type": "s3",
 		"accessKeyId": "",
 		"secretAccessKey": "",
-		"region": ""
+		"region": "us-west-1"
 	},
 	"database": {
 		"host": "localhost",
