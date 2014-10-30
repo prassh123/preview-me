@@ -52,7 +52,7 @@ var server = http.createServer(app).listen(config.server.port, config.server.hos
 	console.log('Example app listening at http://%s:%s', config.server.host, config.server.port);
 	io         = require('socket.io')(server);
 	io.on('connection', function (socket) {
-		console.log('received connection ');
+		//console.log('received connection ');
 		dataSocket = socket;
 		//socket.emit('preview-ready', { hello: 'world' });
 	});

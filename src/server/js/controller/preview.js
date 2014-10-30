@@ -3,19 +3,38 @@ var formidable = require('formidable'),
 	  fs         = require('fs'),
 		path       = require('path'),
 	  imageUtils = require(path.join(__dirname, '/../utils/imageutils')),
-	  s3Util     = require(path.join(__dirname, '/../utils/s3util'));
+	  s3Util     = require(path.join(__dirname, '/../utils/s3util')),
+	  dbUtil     = require(path.join(__dirname, '/../utils/dbUtil')),
+		url = require('url');
 
 
 exports.generatePreview = function(req, res) {
   console.log('Method: generate preview');
 	var fileId = req.params.fileId || req.body.fileId;
 	console.log('fileId ', fileId);
+	var query_params = getURLParts(req);
+	console.log('query_params ' , query_params );
 	if (_.isEmpty(fileId)) {
 		res.json({"status": 500, "message": "error"});
 	}
 
-	s3Util.gets3Object(fileId);
-	res.json({"status": 200, "message": "ok"});
+	// Insert the record into the database
+	dbUtil.insertDocument(config.database.name, 'files', { fileId: '12345', fileName: 'taj_mahal.jpg' } );
+
+	res.json({"status": 200, "message": "OK"});
+	/* commenting out for now
+	s3Util.gets3Object(fileId, query_params).then(
+		function(data) {
+			console.log(data);
+			imageUtils.resizeImage(data);
+			res.json({"status": 200, "message": "OK"});
+		},
+		function(error) {
+			console.log(error);
+			res.json({"status": 500, "message": "error"});
+		}
+	);
+	*/
 };
 
 exports.uploadFile = function(req, res) {
@@ -51,3 +70,7 @@ exports.uploadFile = function(req, res) {
 	});
 };
 
+getURLParts = function(req) {
+	var url_parts = url.parse(req.url, true);
+	return url_parts.query;
+};
