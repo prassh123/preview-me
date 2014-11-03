@@ -18,13 +18,14 @@
 		"type": "s3",
 		"accessKeyId": "",
 		"secretAccessKey": "",
-		"region": "us-west-1"
+		"region": "",
+		"bucket": "preview-me/uploads"
 	},
 	"database": {
 		"host": "localhost",
 		"port": "27017",
 		"username": "guest",
 		"password": "guest",
-		"name": "preview-me"
+		"name": "preview"
 	}
 }
