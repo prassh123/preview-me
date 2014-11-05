@@ -5,6 +5,7 @@ var express = require('express'),
 module.exports = function(app, p) {
   var router = express.Router();
   router.route('/api/preview/:fileId')
+		    .get(previewController.generatePreview)
         .post(previewController.generatePreview);
 
 	router.route('/api/preview')
@@ -15,6 +16,3 @@ module.exports = function(app, p) {
 
 	app.use('/', router);
 };
-
-
-

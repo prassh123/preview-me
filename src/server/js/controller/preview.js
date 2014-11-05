@@ -5,9 +5,17 @@ var formidable = require('formidable'),
 	  imageUtils = require(path.join(__dirname, '/../utils/imageutils')),
 	  s3Util     = require(path.join(__dirname, '/../utils/s3util')),
 	  dbUtil     = require(path.join(__dirname, '/../utils/dbUtil')),
+
+	  fileModel  = require(path.join(__dirname, '/../model/fileModel')),
+	  moment     = require('moment'),
 		url = require('url');
 
 
+/**
+ * Client requests previews using something like http://localhost:3000/api/preview/taj_mahal.jpg?action=resize&width=200&height=200
+ * @param req
+ * @param res
+ */
 exports.generatePreview = function(req, res) {
   console.log('Method: generate preview');
 	var fileId = req.params.fileId || req.body.fileId;
@@ -18,23 +26,27 @@ exports.generatePreview = function(req, res) {
 		res.json({"status": 500, "message": "error"});
 	}
 
-	// Insert the record into the database
-	dbUtil.insertDocument(config.database.name, 'files', { fileId: '12345', fileName: 'taj_mahal.jpg' } );
+	console.log(fileModel);
+	fileModel.fileData.fileId = fileId;
+	fileModel.fileData.fileName = fileId;
 
-	res.json({"status": 200, "message": "OK"});
-	/* commenting out for now
-	s3Util.gets3Object(fileId, query_params).then(
+	// Insert the record into the database
+	dbUtil.insertDocument(config.database.name, 'files', fileModel.fileData );
+
+
+	//commenting out for now
+	s3Util.gets3Object(fileId, query_params, res).then(
 		function(data) {
-			console.log(data);
-			imageUtils.resizeImage(data);
-			res.json({"status": 200, "message": "OK"});
+			//console.log(data);
+			//imageUtils.resizeImage(data, res);
+			//res.json({"status": 200, "message": "OK"});
 		},
 		function(error) {
 			console.log(error);
 			res.json({"status": 500, "message": "error"});
 		}
 	);
-	*/
+
 };
 
 exports.uploadFile = function(req, res) {

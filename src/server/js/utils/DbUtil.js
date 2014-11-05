@@ -2,14 +2,21 @@ var Mongodb = require('mongodb'),
 	  db      = Mongodb.Db,
 	  MongoClient = Mongodb.MongoClient,
 	  Server = Mongodb.Server,
-	  _      = require('lodash');
+	  _      = require('lodash'),
+	  moment = require('moment');
 
 var dbclient = null;
 
-var getDbClientInstance = function() {
+var getDbClientInstance = function(callback) {
   if (_.isEmpty(dbclient)) {
 		console.log('db client is emtpy..Creating a new instance');
 		dbclient = new MongoClient(new Server(config.database.host, config.database.port), {native_parser: true});
+	}
+	if (! dbclient._db.openCalled) {
+		dbclient.open(callback);
+	}
+	else {
+		callback('', dbclient);
 	}
 	return dbclient;
 };
@@ -18,14 +25,15 @@ var getDbClientInstance = function() {
  *
  */
 var insertDocument = function(dbname, collectionName, collectionObj) {
-	var mongoclient = this.getDbClientInstance();
-	mongoclient.open(function(err, mongoclient) {
-		var db = mongoclient.db(dbname);
-		db.collection(collectionName).insert(collectionObj, function(err, inserted) {
-			if (!_.isEmpty(err)) {
-				console.error('Insert failed ', err);
-			}
-		});
+	var mongoclient = this.getDbClientInstance(function(err, mongoclient) {
+			var db = mongoclient.db(dbname);
+		  collectionObj._id =  moment().format('X');
+			db.collection(collectionName).insert(collectionObj, {_id: 1}, function (err, inserted) {
+				console.log('inserting ', collectionObj);
+				if (!_.isEmpty(err)) {
+					console.error('Insert failed ', err);
+				}
+			});
 	});
 };
 
